@@ -12,7 +12,6 @@ class GetStockList():
         self.kiwoom = Kiwoom()
         self.kiwoom.CommConnect(block=True)
 
-    def getConditionList(self):
         # 조건식을 PC로 다운로드
         self.kiwoom.GetConditionLoad()
 
@@ -23,8 +22,11 @@ class GetStockList():
         condition_index = conditions[0][0]
         condition_name = conditions[0][1]
 
+        print(condition_index, condition_name)
+
         #해당 조건식으로 선별한 종목들 리스트
         codes = self.kiwoom.SendCondition('0101', condition_name, condition_index, 0)
+        print(codes)
 
         #self.stocks = fdr.StockListing('KRX')
         self.stockDict = {}  # 필터 조건을 만족한 종목 딕셔너리
@@ -132,4 +134,4 @@ class GetStockList():
 
 
 if __name__ == "__main__":
-    Main()
+    GetStockList()
